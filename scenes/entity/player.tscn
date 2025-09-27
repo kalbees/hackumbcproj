@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://6t6pj2tlt26e"]
+
+[ext_resource type="Script" uid="uid://b7damx86d873m" path="res://scripts/components/hitbox.gd" id="1_gdab3"]
+[ext_resource type="Script" uid="uid://c44wvh8s2t25j" path="res://scripts/components/hurtbox.gd" id="2_tgyl1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gqvra"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"grapple",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqvra"]
+size = Vector2(103, 127)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gqvra")
+animation = &"grapple"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gqvra")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("1_gdab3")
+metadata/_custom_type_script = "uid://b7damx86d873m"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("2_tgyl1")
+metadata/_custom_type_script = "uid://c44wvh8s2t25j"
