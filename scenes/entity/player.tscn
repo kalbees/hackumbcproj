@@ -1,7 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://6t6pj2tlt26e"]
+[gd_scene load_steps=16 format=3 uid="uid://6t6pj2tlt26e"]
 
+[ext_resource type="Script" uid="uid://7ky1ecmbrht3" path="res://scripts/player/player.gd" id="1_bee8u"]
 [ext_resource type="Script" uid="uid://b7damx86d873m" path="res://scripts/components/hitbox.gd" id="1_gdab3"]
+[ext_resource type="Texture2D" uid="uid://brt3ygnjmg743" path="res://icon.svg" id="1_k4nkw"]
+[ext_resource type="Script" uid="uid://bcarc30qrlfng" path="res://scripts/components/movement.gd" id="2_ksla3"]
 [ext_resource type="Script" uid="uid://c44wvh8s2t25j" path="res://scripts/components/hurtbox.gd" id="2_tgyl1"]
+[ext_resource type="Script" uid="uid://b6ny8xpcau7gn" path="res://scripts/player/state_machine/state_machine.gd" id="3_tgyl1"]
+[ext_resource type="Script" uid="uid://c8qb8v6e0sk1i" path="res://scripts/player/state_machine/idle_state.gd" id="4_j8jve"]
+[ext_resource type="Script" uid="uid://bxb422r0raxpe" path="res://scripts/player/state_machine/jump_state.gd" id="5_k4nkw"]
+[ext_resource type="Script" uid="uid://cork5p4002ei2" path="res://scripts/player/state_machine/fall_state.gd" id="6_bee8u"]
+[ext_resource type="Script" uid="uid://b7tov4dor1fjn" path="res://scripts/player/state_machine/move_state.gd" id="7_ksla3"]
+[ext_resource type="Script" uid="uid://bs61psa1rxl7f" path="res://scripts/player/state_machine/grapple_state.gd" id="11_lo118"]
+
+[sub_resource type="Resource" id="Resource_lo118"]
+script = ExtResource("2_ksla3")
+metadata/_custom_type_script = "uid://bcarc30qrlfng"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gqvra"]
 animations = [{
@@ -34,7 +47,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gqvra"]
 size = Vector2(103, 127)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bee8u"]
+size = Vector2(93, 90)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("1_bee8u")
+movement = SubResource("Resource_lo118")
+hitbox = NodePath("Hitbox")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_k4nkw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gqvra")
@@ -47,6 +70,44 @@ shape = SubResource("RectangleShape2D_gqvra")
 script = ExtResource("1_gdab3")
 metadata/_custom_type_script = "uid://b7damx86d873m"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(2, -3)
+shape = SubResource("RectangleShape2D_bee8u")
+
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("2_tgyl1")
 metadata/_custom_type_script = "uid://c44wvh8s2t25j"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(2, -3)
+shape = SubResource("RectangleShape2D_bee8u")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("curr_state", "initial_state")]
+script = ExtResource("3_tgyl1")
+curr_state = NodePath("Idle")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://b6ny8xpcau7gn"
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_j8jve")
+metadata/_custom_type_script = "uid://c8qb8v6e0sk1i"
+
+[node name="Jump" type="Node2D" parent="StateMachine"]
+script = ExtResource("5_k4nkw")
+metadata/_custom_type_script = "uid://bxb422r0raxpe"
+
+[node name="Fall" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_bee8u")
+metadata/_custom_type_script = "uid://cork5p4002ei2"
+
+[node name="Move" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_ksla3")
+metadata/_custom_type_script = "uid://b7tov4dor1fjn"
+
+[node name="Grapple" type="Node2D" parent="StateMachine"]
+script = ExtResource("11_lo118")
+metadata/_custom_type_script = "uid://bs61psa1rxl7f"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
