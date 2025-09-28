@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://v7mhl0fk1vic"]
+
+[ext_resource type="Script" uid="uid://cd88f422ltg26" path="res://scripts/ui/arcade_interface.gd" id="1_3p6bm"]
+[ext_resource type="Texture2D" uid="uid://i55pbjl3aky1" path="res://assets/ui/Untitled_presentation.png" id="2_3p6bm"]
+[ext_resource type="Texture2D" uid="uid://gto4kvbo4j1" path="res://assets/ui/ui_heart1.png" id="2_ndtjq"]
+[ext_resource type="Texture2D" uid="uid://c4wjxfn0xru7k" path="res://assets/ui/ui_usba1.png" id="4_j1f8i"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3p6bm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3p6bm")
+
+[node name="Hearts" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Hearts"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 558.0
+offset_right = 173.0
+offset_bottom = 625.0
+texture = ExtResource("2_ndtjq")
+
+[node name="TextureRect2" type="TextureRect" parent="Hearts"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 553.0
+offset_right = 274.0
+offset_bottom = 620.0
+texture = ExtResource("2_ndtjq")
+
+[node name="TextureRect3" type="TextureRect" parent="Hearts"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 558.0
+offset_right = 374.0
+offset_bottom = 625.0
+texture = ExtResource("2_ndtjq")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 560.0
+offset_right = 622.0
+offset_bottom = 600.0
+texture = ExtResource("4_j1f8i")

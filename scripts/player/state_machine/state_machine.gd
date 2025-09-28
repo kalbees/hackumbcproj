@@ -23,7 +23,6 @@ func init(parent: Player) -> void:
 
 # change state 
 func change_state(state: String) -> void: 
-	print("changed state: " + state)
 	if curr_state:
 		curr_state.exit()
 	curr_state = states[state]

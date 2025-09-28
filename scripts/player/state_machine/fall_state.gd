@@ -20,9 +20,9 @@ func get_external_input() -> void:
 	var direction = Input.get_axis("ui_left", "ui_right")
 	parent.velocity.x = direction * parent.movement.curr_move_speed
 	# change sprite direction
-	if direction < 0:
-		parent.animated_sprite_2d.flip_h = true
 	if direction > 0:
+		parent.animated_sprite_2d.flip_h = true
+	if direction < 0:
 		parent.animated_sprite_2d.flip_h = false
 	# handle transition to grapple
 	if Input.is_action_just_pressed("grapple") and parent.can_grapple:

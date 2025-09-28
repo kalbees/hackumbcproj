@@ -18,8 +18,8 @@ func init() -> void:
 
 # curr health setter 
 func set_health(health: int) -> void:
-	curr_health = health
-	clamp(curr_health, 0, HEALTH)
+	curr_health = clamp(health, 0, HEALTH)
+	SignalBus.emit_signal("player_hp_changed", curr_health)
 
 # max health setter
 func set_max_health(health: int) -> void: 
@@ -27,7 +27,8 @@ func set_max_health(health: int) -> void:
 
 # take dmg func
 func take_dmg(dmg: int) -> void: 
-	curr_health =- dmg
+	curr_health -= dmg
+	SignalBus.emit_signal("player_hp_changed", curr_health)
 	if (curr_health <= 0):
 		die() 
 

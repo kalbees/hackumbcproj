@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfx4bfm4rl1el"]
+
+[ext_resource type="Script" uid="uid://dtvuy1srtgfa0" path="res://scripts/ui/title_screen.gd" id="1_w8uqo"]
+[ext_resource type="Texture2D" uid="uid://b0dkdblqybhmd" path="res://assets/ui/Untitled_presentation3.png" id="2_a4ium"]
+[ext_resource type="Texture2D" uid="uid://cu0i3248seth2" path="res://assets/ui/Untitled_presentation4.png" id="3_r23qo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cfe2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a4ium")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r23qo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_w8uqo")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.777771, 2)
+scale = Vector2(1.2037036, 1.2037038)
+sprite_frames = SubResource("SpriteFrames_cfe2f")
+frame_progress = 0.1025911

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b46symrwggego"]
 
 [ext_resource type="Script" uid="uid://cvbs5kireqm7g" path="res://scripts/interactables/grapple_area.gd" id="1_x8t3o"]
-[ext_resource type="Texture2D" uid="uid://xg5e8ms6lwfn" path="res://assets/level/interactables/can_grapple.png" id="2_s7fus"]
-[ext_resource type="Texture2D" uid="uid://bjhckhdr5srfl" path="res://assets/level/interactables/cant_grapple.png" id="3_475b2"]
+[ext_resource type="Texture2D" uid="uid://d202ae7knhana" path="res://assets/level/interactables/gcan_grapple.png" id="2_s7fus"]
+[ext_resource type="Texture2D" uid="uid://bwlmldm7smifc" path="res://assets/level/interactables/gcant_grapple.png" id="3_475b2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cfk0i"]
 animations = [{
@@ -32,7 +32,7 @@ script = ExtResource("1_x8t3o")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_cfk0i")
-animation = &"active"
+animation = &"inactive"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 139)

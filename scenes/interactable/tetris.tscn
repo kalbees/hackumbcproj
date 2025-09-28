@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://b62ki63vmbi60"]
+
+[ext_resource type="Script" uid="uid://ch7vddkpiro1e" path="res://scripts/level/tetris.gd" id="1_dshhy"]
+[ext_resource type="Texture2D" uid="uid://c15rvndq1r5ei" path="res://assets/level/backgrounds/hackUMBC_tetris_draft.png" id="1_to0fs"]
+[ext_resource type="PackedScene" uid="uid://crevlvk0uskda" path="res://scenes/interactable/block.tscn" id="2_v75j0"]
+[ext_resource type="PackedScene" uid="uid://6t6pj2tlt26e" path="res://scenes/entity/player.tscn" id="3_dshhy"]
+[ext_resource type="PackedScene" uid="uid://dphile2ws773q" path="res://scenes/interactable/l_block_r.tscn" id="4_dshhy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2guu"]
+size = Vector2(150, 301)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v75j0"]
+size = Vector2(171, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dshhy"]
+size = Vector2(265, 34)
+
+[node name="Tetris" type="Node2D"]
+script = ExtResource("1_dshhy")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_to0fs")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-175, 0.5)
+shape = SubResource("RectangleShape2D_j2guu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(164.5, 0)
+shape = SubResource("RectangleShape2D_v75j0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-2.5, 133)
+shape = SubResource("RectangleShape2D_dshhy")
+
+[node name="Blocks" type="Node2D" parent="."]
+position = Vector2(-40, -77)
+scale = Vector2(0.6, 0.6)
+
+[node name="Block" parent="Blocks" instance=ExtResource("2_v75j0")]
+position = Vector2(-74, 83)
+
+[node name="Block2" parent="Blocks" instance=ExtResource("4_dshhy")]
+position = Vector2(-7, 83)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Player" parent="." instance=ExtResource("3_dshhy")]
+position = Vector2(0, 91)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

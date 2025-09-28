@@ -9,9 +9,9 @@ func update(delta: float) -> void:
 	var direction = Input.get_axis("ui_left", "ui_right")
 	parent.velocity.x = direction * parent.movement.curr_move_speed
 	# change sprite direction
-	if direction < 0:
-		parent.animated_sprite_2d.flip_h = true
 	if direction > 0:
+		parent.animated_sprite_2d.flip_h = true
+	if direction < 0:
 		parent.animated_sprite_2d.flip_h = false
 	parent.move_and_slide()
 	get_external_input()

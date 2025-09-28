@@ -6,6 +6,7 @@
 size = Vector2(50, 57.5)
 
 [node name="Hiitbox" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_kev6k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

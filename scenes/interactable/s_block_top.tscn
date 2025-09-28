@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx5472w53gew2"]
+
+[ext_resource type="Script" uid="uid://374qw2cfuuyl" path="res://scripts/interactables/block.gd" id="1_5g8de"]
+[ext_resource type="Script" uid="uid://bcarc30qrlfng" path="res://scripts/components/movement.gd" id="2_0tvg8"]
+[ext_resource type="Texture2D" uid="uid://dltdqrrot6fig" path="res://assets/level/interactables/green_tetris_block_fixed.png" id="3_5g8de"]
+[ext_resource type="Script" uid="uid://c44wvh8s2t25j" path="res://scripts/components/hurtbox.gd" id="4_e1qu5"]
+
+[sub_resource type="Resource" id="Resource_iow35"]
+script = ExtResource("2_0tvg8")
+metadata/_custom_type_script = "uid://bcarc30qrlfng"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iow35"]
+size = Vector2(8, 32.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgb5v"]
+size = Vector2(8, 33)
+
+[node name="Block" type="CharacterBody2D"]
+rotation = -1.5707964
+script = ExtResource("1_5g8de")
+movement = SubResource("Resource_iow35")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("3_5g8de")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(109, -6)
+polygon = PackedVector2Array(-149, 5.999998, -122, 5.9999995, -122, -27, -68, -27, -68, 6, -94, 6, -94, 39, -149, 39)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("4_e1qu5")
+metadata/_custom_type_script = "uid://c44wvh8s2t25j"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-36, 16.624998)
+shape = SubResource("RectangleShape2D_iow35")
+debug_color = Color(0.9907276, 0, 0.2804999, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-8.999999, -16.5)
+shape = SubResource("RectangleShape2D_pgb5v")
+debug_color = Color(0.99458474, 0, 0.22710544, 0.41960785)

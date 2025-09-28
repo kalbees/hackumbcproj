@@ -6,6 +6,8 @@
 size = Vector2(97, 114)
 
 [node name="Hurtbox" type="Area2D"]
+collision_mask = 2
+monitorable = false
 script = ExtResource("1_468bi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

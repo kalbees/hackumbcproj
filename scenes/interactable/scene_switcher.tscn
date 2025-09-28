@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl5y04t1cd8c7"]
+
+[ext_resource type="Script" uid="uid://jew43md261so" path="res://scripts/interactables/scene_switcher.gd" id="1_mg1vr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fues"]
+size = Vector2(292, 155)
+
+[node name="SceneSwitcher" type="Area2D"]
+script = ExtResource("1_mg1vr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 12.5)
+shape = SubResource("RectangleShape2D_1fues")
+debug_color = Color(2.2140146e-06, 0.64437306, 0.28825414, 0.41960785)

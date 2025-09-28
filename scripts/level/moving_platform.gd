@@ -1,18 +1,29 @@
 extends StaticBody2D
 
-# initial animation
-@export var initial_animation: String
+const DOWNWARD_POS: float = 250.0
+const SPEED: float = 100.0
 
-# on ready variables 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+var first_pos: Vector2
+var next_pos: Vector2
+
+var direction: int = 1 # for downward motion 
+var target: Vector2
 
 # on ready
 func _ready() -> void:
-	animation_player.play(initial_animation)
+	first_pos = global_position
+	next_pos = first_pos
+	next_pos.y -= DOWNWARD_POS
+	target = next_pos
 
-# when animation finishes, switch to the other version 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "move_left":
-		animation_player.play("move_right")
-	if anim_name == "move_right":
-		animation_player.play("move_left")
+# go between two positions 
+func _physics_process(delta: float) -> void:
+	var movement = SPEED * delta
+	global_position.move_toward(target, movement)
+	if global_position == target:
+		if direction == 1:
+			target = first_pos
+			direction = -1
+		else:
+			target = next_pos
+			direction = 1
