@@ -50,7 +50,7 @@ size = Vector2(103, 127)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bee8u"]
 size = Vector2(93, 90)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hitbox") groups=["player"]]
 script = ExtResource("1_bee8u")
 movement = SubResource("Resource_lo118")
 hitbox = NodePath("Hitbox")

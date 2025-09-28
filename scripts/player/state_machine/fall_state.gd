@@ -9,7 +9,10 @@ func update(delta: float) -> void:
 	parent.move_and_slide()
 	# handle idle 
 	if parent.is_on_floor():
-		emit_signal("change_to_state", "idle")
+		if abs(parent.velocity.x) > 0.1:
+			emit_signal("change_to_state", "move")
+		else:
+			emit_signal("change_to_state", "idle")
 
 func get_external_input() -> void: 
 	# handle left and right movement 

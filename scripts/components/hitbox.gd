@@ -18,7 +18,8 @@ func init() -> void:
 
 # curr health setter 
 func set_health(health: int) -> void:
-	curr_health = health 
+	curr_health = health
+	clamp(curr_health, 0, HEALTH)
 
 # max health setter
 func set_max_health(health: int) -> void: 

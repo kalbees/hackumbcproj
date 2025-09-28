@@ -9,6 +9,8 @@ func update(delta: float) -> void:
 		emit_signal("change_to_state", "jump")
 	if not parent.is_on_floor():
 		emit_signal("change_to_state", "fall")
+	if Input.is_action_just_pressed("grapple") and parent.can_grapple:
+		emit_signal("change_to_state", "grapple")
 
 func enter() -> void:
 	parent.animated_sprite_2d.play("idle")

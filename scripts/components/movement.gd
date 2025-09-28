@@ -2,10 +2,10 @@ class_name Movement
 extends Resource
 
 # default speeds
-const GRAVITY: float = 700.0
-const JUMP_FORCE: float = 1000.0 
-const MOVE_SPEED: float = 600.0
-const GRAPPLE_SPEED: float = 800.0
+const GRAVITY: float = 1000.0
+const JUMP_FORCE: float = 500.0 
+const MOVE_SPEED: float = 400.0
+const GRAPPLE_SPEED: float = 500.0
 
 # speed related variables 
 var curr_gravity: float 

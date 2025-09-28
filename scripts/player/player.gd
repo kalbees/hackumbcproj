@@ -29,6 +29,8 @@ func _ready() -> void:
 	state_machine.init(self)
 	
 	# connect signals
+	SignalBus.connect("player_can_grapple", toggle_grapple_on)
+	SignalBus.connect("player_cannot_grapple", toggle_grapple_off)
 	hitbox.connect("died", on_death)
 	
 	# initialize port
@@ -38,9 +40,9 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use_cord"):
 		if curr_port == Cords.ETHERNET:
-			emit_signal("player_connect")
+			SignalBus.emit_signal("player_connect")
 		if curr_port == Cords.VGA:
-			emit_signal("player_interact")
+			SignalBus.emit_signal("player_interact")
 
 func use_cord() -> void:
 	pass 
@@ -49,7 +51,15 @@ func use_cord() -> void:
 func change_cord(type: Cords) -> void:
 	curr_port = type
 
+# handle grapple perms on
+func toggle_grapple_on(pos: Vector2) -> void:
+	can_grapple = true 
+
+# handle grapple perms off
+func toggle_grapple_off() -> void: 
+	can_grapple = false
+
 # handle the death of the player 
 func on_death() -> void: 
-	emit_signal("player_died")
+	SignalBus.emit_signal("player_died")
 	queue_free()
